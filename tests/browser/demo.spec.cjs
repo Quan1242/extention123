@@ -71,6 +71,7 @@ test('native selection scopes issues to selected box and clear selection restore
     await page.evaluate(()=>{const s=__C3D_DEMO_TEST.snapshot();s.activeBoxId=null;window.dispatchEvent(new CustomEvent('c3d:snapshot:v2',{detail:JSON.stringify(s)}));});
     await expect(page.locator('.c3d-issue-target').filter({hasText:/^Box #4$/})).toHaveCount(1);
     await expect(page.locator('.c3d-title')).toHaveText('CVAT 3D TOOL');
+    await expect(page.locator('.c3d-logo')).toBeVisible();
     expect(await page.locator('#c3d-content-body').evaluate(el=>getComputedStyle(el).scrollbarColor)).toBe('rgb(69, 69, 77) rgb(24, 24, 27)');
 });
 
