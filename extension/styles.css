@@ -604,3 +604,39 @@
 .c3d-import-dialog::backdrop{background:#0009}.c3d-import-dialog button,.c3d-import-dialog select,.c3d-import-dialog input[type=search]{background:#303039;color:#eee;border:1px solid #52525b;padding:7px;border-radius:4px;margin:5px}
 .c3d-import-rows{max-height:45vh;overflow:auto;scrollbar-width:thin;scrollbar-color:#52525b #18181d;margin:10px 0}
 .c3d-import-rows label{display:block;padding:8px;border-bottom:1px solid #333}.c3d-import-rows label[hidden]{display:none}
+
+#cvat-3d-copilot-root {
+  box-sizing: border-box;
+  width: min(320px, calc(100vw - 24px));
+  top: 48px;
+  right: 12px;
+  max-height: calc(100vh - 60px);
+  font-size: 12px;
+}
+.c3d-header { padding: 7px 10px; }
+.c3d-header-brand { gap: 4px; }
+.c3d-logo { width: 18px; height: 18px; }
+.c3d-header .c3d-badge-status { margin-left: 2px; }
+.c3d-btn-reload { padding: 2px 5px; }
+.c3d-update-row { padding: 4px 10px; gap: 4px; }
+#c3d-content-body { padding: 0 8px 8px; }
+.c3d-context { margin: 0 -8px; padding: 6px 10px; gap: 2px; }
+#cvat-3d-copilot-root .c3d-action-grid { gap: 4px; }
+#cvat-3d-copilot-root .c3d-btn-secondary { padding: 5px 7px; line-height: 1.25; }
+.c3d-metrics-bar { padding: 7px 8px; gap: 5px; }
+.c3d-metric-label { font-size: 8px; }
+.c3d-metric-item strong { font-size: 14px; }
+.c3d-toolbar { padding: 8px; gap: 6px; }
+.c3d-btn-primary { padding: 5px 8px; font-size: 10px; }
+.c3d-toggles { margin: 5px 0; font-size: 10px; }
+.c3d-inspector-card { padding: 8px; }
+.c3d-class-row { margin-bottom: 6px; }
+.c3d-inspector-grid { font-size: 10px; }
+.c3d-preset { padding: 6px; }
+.c3d-preset-fields { gap: 4px; margin: 4px 0; }
+#cvat-3d-copilot-root select { padding: 3px; }
+.c3d-issue-header-bar { padding: 6px 8px; }
+#c3d-issue-list { padding: 6px; gap: 4px; }
+.c3d-issue-item { padding: 6px 8px; }
+.c3d-empty-state { padding: 16px 10px; }
+.c3d-legend { padding: 4px 8px 6px; }
