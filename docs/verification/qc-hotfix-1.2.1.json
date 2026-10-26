@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-07",
+  "version": "1.2.1",
+  "fix": "Resolve geometry at use time and package geometry with each execution-world entry point",
+  "unitTestsPassed": 19,
+  "browserTestsPassed": 5,
+  "regressions": [
+    "Missing geometry produces an explicit dependency message, not undefined.makePlane",
+    "Loading geometry after panel initialization allows QC to recover",
+    "Manifest panel starts and fits a ground plane with no preexisting geometry global"
+  ],
+  "liveCVATVerified": false,
+  "testCommands": ["node --test tests/*.test.cjs", "node node_modules/@playwright/test/cli.js test"]
+}

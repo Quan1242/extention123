@@ -1,0 +1,58 @@
+{
+  "manifest_version": 3,
+  "name": "CVAT 3D TOOL",
+  "version": "1.16.0",
+  "description": "Minimalist Real-time Quality Linter, Auto Ground Snapping, and 3D Assistant for CVAT",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "cookies",
+    "downloads",
+    "nativeMessaging"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "copilot_main.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "copilot_panel.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "geometry_math.js",
+        "cvat_adapter.js",
+        "content_script.js",
+        "shortcut_settings.js",
+        "styles.css",
+        "main_world_bridge.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "session_worker.js"
+  }
+}

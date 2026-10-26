@@ -1,0 +1,39 @@
+{
+  "verifiedAt": "2026-10-10T07:43:03.790Z",
+  "version": "1.6.0",
+  "scope": "offline math and mocked native adapter; no live writes",
+  "unitTests": {
+    "passed": true,
+    "exitCode": 0,
+    "output": "✔ selection uses clientID even when another object has the same serverID (4.2426ms)\n✔ 2D jobs cannot receive a 3D mutation (0.9904ms)\n✔ native Review workspace refuses mutations regardless of enum capitalization (0.4215ms)\n✔ failure after core commit does not falsely roll back already-saved data (1.0468ms)\n✔ ground reads scene point-cloud transforms then snaps through native save (28.4485ms)\n✔ rotate uses native save/history + reducer action and marks unsaved (2.3342ms)\n✔ Auto-Fit scans native scene ROI and uses the native save/history pipeline (45.8858ms)\n✔ Auto-Fit continues with XY only when native ground support is one-sided (23.6255ms)\n✔ repeated ROI requests use cached coordinates and invalidate on cloud transform changes (2.3141ms)\n✔ real 1m seed case is fitted through native adapter with corrected ground and height (314.128ms)\n✔ real expanded-height regression saves only the vehicle through native adapter (481.5969ms)\n✔ dense parking box32 fits only the seeded vehicle through native adapter (417.745ms)\n✔ historical compact vehicle regression preserves manual ground snap (504.9352ms)\n✔ failed native mutation rejects, restores input, and emits no success action (0.4451ms)\n✔ stale revision, old frame, locked objects and drawing mode refuse edits (0.9853ms)\n✔ new boxes without serverID can change class through native state (0.5401ms)\n✔ QC appearance affects exact IDs and restores native label colors (0.6242ms)\n✔ late native result never inserts old-frame states into current frame (0.3677ms)\n✔ focus selects exact clientID and frames all vertices while preserving viewing direction (1.8597ms)\n✔ rotation is immutable, preserves geometry and wraps after a full turn (2.6965ms)\n✔ non-finite coordinates and nonpositive dimensions are rejected (0.2295ms)\n✔ snap supports XYZ Euler tilt and slope without any penetrating vertex (0.4925ms)\n✔ oriented IoU detects true intersections and avoids close but disjoint boxes (0.8131ms)\n✔ QC checks width/height maximums and never assumes unknown class is vehicles (2.3094ms)\n✔ frame QC emits one pair issue linked to both boxes; no ground means no ground verdict (0.898ms)\n✔ local LiDAR ground is independent of box bottom and rejects sparse support (28.3227ms)\n✔ plane fitter rejects collinear points rather than inventing ground (0.2216ms)\n✔ Auto-Fit bike recovers PCA yaw, extents and bottom while filtering road (8.544ms)\n✔ Auto-Fit clamps sparse bike dimensions, max dimensions and preserves yaw hemisphere (16.9203ms)\n✔ Auto-Fit rejects sparse post-ground cluster, invalid ground, unknown labels and XY degeneracy (1.7197ms)\n✔ Auto-Fit bottom touches highest ground corner on a slope, with no penetrating vertices (1.9328ms)\n✔ Auto-Fit ROI expands rotated box in its local frame and excludes outside points (0.5947ms)\n✔ seed cluster grows beyond a rough box and excludes a disconnected neighbor (11.85ms)\n✔ unreliable ground can fit XY/yaw explicitly while preserving original Z and height (3.4198ms)\n✔ fit heading follows rectangle footprint despite heavily biased roof return density (35.6745ms)\n✔ voxel clustering preserves original dense returns and rejects disconnected components (36.2374ms)\n✔ spatial index queries only local cells and preserves all repeated local returns (0.5978ms)\n✔ manual ground snap allows supported estimated plane and rejects invalid evidence (0.4391ms)\n✔ family vehicles QC accepts compact car, SUV and MPV and flags oversized bus/truck geometry (3.7383ms)\n✔ family Auto-Fit refuses a long vehicle instead of clamping it into a car (11.8247ms)\n✔ seeded fit respects neighboring annotation interiors and preserves overlapping seed points (33.125ms)\n✔ real job 9426 case: recover ground, heading and height without using hand box as input (531.6541ms)\n✔ real case rotated/translated still finds body axis and ground (256.5394ms)\n✔ height search includes road and roof even when the initial box is only 1m tall (0.4627ms)\n✔ real 1.4.0 regression: expanded height must not join the car to the surrounding scene (628.9209ms)\n✔ historical compact truck geometry: ground filtering remains valid within family-size envelope (3637.6368ms)\n✔ box32 dense parking: adaptive seed clustering separates a stable car without a manual reference (2207.8315ms)\nℹ tests 47\nℹ suites 0\nℹ pass 47\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 7634.1221\n"
+  },
+  "fixture": {
+    "count": 61,
+    "ground": "not audited: no LiDAR in fixture",
+    "issueEntries": 4,
+    "affectedBoxes": 5,
+    "severity": {
+      "WARNING": 4
+    }
+  },
+  "browserTests": {
+    "evidence": "Run node node_modules/@playwright/test/cli.js test; see tests/browser and demo-1.2.png. Not run by this script."
+  },
+  "live": {
+    "editsVerified": false,
+    "selectionVerified": false,
+    "saveReloadVerified": false
+  },
+  "hashes": {
+    "README.md": "80b2e164c89b2558bb94bbc7a9aa68c75ef6ed7c720b6b9a2455cd32d34309d0",
+    "extension/manifest.json": "18a9d5ecf3931876011aa61d7337ddbbbd123c6c55dfe7caa2c9b96e44f5684a",
+    "extension/geometry_math.js": "429ec46d84373e82511eca5afd9840ec75b3b99348a79bbbd83d3de550a33182",
+    "extension/cvat_adapter.js": "d7abb5d399226a3df11fc4a9dd0c900ad05d0de9d6a8695e1efd37cb456fae2f",
+    "extension/main_world_bridge.js": "3a548c8f3f0ebbe796fc9d96d907bd8bc8999975242d20368dc865d0e039b3a4",
+    "extension/content_script.js": "015b8a93a6e57d4eb9d3e6198a846a3d0596f3b47816e942e6222af8c0f2d79e",
+    "extension/copilot_main.js": "3b836dac6e74ab4f7af0831e82f13d9ec1c601f306e520e452f3fcd29f15cd5a",
+    "extension/copilot_panel.js": "56344b01dc9112fd2d418bd2c1b192e79300b773cc175caa30e4cb06a3741e90",
+    "demo/demo.js": "f70299847946f365154d9ecf2fd8e56af658cd9f0bca82e2157379d1495e1202",
+    "dist/CVAT-3D-Copilot-Demo.html": "d8987812faeafea709acf78ec86d4c39b0f59c67510824a3c2698281d6d9f3dc"
+  }
+}

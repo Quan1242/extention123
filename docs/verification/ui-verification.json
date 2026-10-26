@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-06",
+  "timeZone": "Asia/Bangkok",
+  "method": "Codex in-app browser; authenticated through native login UI",
+  "url": "https://cvat.note.transformerlabs.ai/tasks/2837/jobs/9426",
+  "organizationVisible": "ai20k-labs",
+  "frameVisible": 29,
+  "itemsVisible": 62,
+  "canvasCount": 7,
+  "pointCloudVisible": true,
+  "contextualImagesVisible": true,
+  "selectedSidebarElement": "cvat-objects-sidebar-state-item-1",
+  "selectedSidebarClass": "cvat-objects-sidebar-state-item cvat-objects-sidebar-state-active-item",
+  "selectedBoxLabel": "pedestrian",
+  "selectedBoxProjectionsVisible": ["Top", "Side", "Front"],
+  "copilotPanelPresent": false,
+  "extensionE2eVerified": false,
+  "annotationWritesAttempted": false,
+  "screenshot": "cvat-job-9426-ui.png",
+  "limitations": [
+    "Native selection is not evidence of Copilot-to-CVAT selection synchronization",
+    "No live rotate, snap, class edit, free camera, save, undo or redo test was performed",
+    "Backend version does not independently identify the deployed frontend build"
+  ]
+}

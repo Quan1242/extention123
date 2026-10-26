@@ -1,0 +1,2 @@
+const {defineConfig}=require('@playwright/test');
+module.exports=defineConfig({testDir:'./tests/browser',timeout:45000,workers:1,use:{channel:'msedge',headless:true,viewport:{width:1440,height:1000},launchOptions:{args:['--use-angle=swiftshader','--enable-unsafe-swiftshader']}},webServer:{command:`"${process.execPath}" scripts/demo-server.cjs`,url:'http://127.0.0.1:4173',reuseExistingServer:true}});

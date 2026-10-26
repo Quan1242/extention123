@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="vi"><meta charset="utf-8"><title>CVAT Session & Annotation</title>
+<link rel="stylesheet" href="session.css">
+<main>
+<h1>Phiên CVAT & Annotation</h1>
+<p id="context">Đang kiểm tra tab CVAT…</p>
+<p id="status" role="status" aria-live="polite"></p>
+<section><h2>Phiên đăng nhập</h2>
+<p>Chỉ đọc cookie khi bạn bấm nút. SessionID có quyền truy cập tài khoản; không chia sẻ cho người khác.</p>
+<button id="read">Lấy thông tin phiên</button><button id="clear">Xóa khỏi màn hình</button>
+<p id="expiry"></p>
+<label>SessionID <input id="session" type="password" readonly autocomplete="off"></label>
+<label>CSRF <input id="csrf" type="password" readonly autocomplete="off"></label>
+<button id="reveal">Hiện / che</button><button id="copy-session">Copy sessionID</button><button id="copy-csrf">Copy CSRF</button>
+</section>
+<section><h2>Python CLI đi kèm</h2>
+<p>Python 3.10+, không cần cài package. Tải script, mở terminal trong thư mục chứa script rồi dùng lệnh bên dưới. Trình duyệt không tự chạy Python và không gửi cookie cho tiến trình cục bộ.</p>
+<button id="python-download">Tải Python CLI</button>
+<button id="python-export">Copy lệnh export ZIP</button><button id="script">Copy lệnh export JSON native</button>
+<button id="python-import">Copy lệnh import ZIP</button><button id="python-restore">Copy lệnh restore JSON native</button>
+<p>Lệnh dùng PowerShell và nhập sessionID/CSRF qua prompt ẩn, không nhúng cookie vào script/lệnh. Có thể dùng biến môi trường CVAT_SESSIONID và CVAT_CSRFTOKEN thay thế. Đổi tên file trong lệnh theo file thực tế.</p>
+<p>Import thay thế annotation server: Save rồi đóng editor trước, xác nhận đúng job. CLI tạo và kiểm tra JSON native dự phòng trong cvat-backups trước khi ghi. Restore JSON chỉ hỗ trợ cùng server/job, kiểm tra label/schema attributes; ID annotation trên server có thể đổi. Nạp lại CVAT sau import. Quyền tài khoản vẫn áp dụng, kể cả lỗi export ZIP bị từ chối.</p>
+</section>
+<section><h2>Annotation của job đang mở</h2>
+<p>Save CVAT trước khi thao tác. Dùng phiên trình duyệt, không cần bấm lấy sessionID. Giới hạn file 8 MiB; file lớn hơn dùng Import/Export native của CVAT.</p>
+<button id="formats">Đọc định dạng từ server</button>
+<label>Định dạng export / dự phòng <select id="export-format"></select></label>
+<button id="export">Export annotation</button>
+<p>Job 3D chỉ hiển thị định dạng 3D server hỗ trợ; ưu tiên Datumaro 3D 1.0 (ZIP cuboid/attributes/track_id). Không kèm PCD/ảnh. Export ZIP có thể cần quyền owner/admin tùy server.</p>
+<button id="export-native">Export JSON native (API đọc)</button>
+<p>JSON native đọc annotation đã Save, giữ cấu trúc tracks/keyframes từ API; có thêm server/job và bảng label ID/tên cơ bản. Không phải bản backup đầy đủ task hoặc định dạng dataset để Upload annotations trực tiếp. JSON chẩn đoán Auto-Fit và preview batch cũng không phải dataset export.</p>
+<label>Định dạng import <select id="import-format"></select></label>
+<label>File annotation <input id="file" type="file"></label>
+<p>Import có thể thay thế annotation đã lưu của job. Không có Undo native cho thao tác server này. Tool tải bản export dự phòng trước khi upload; giữ file dự phòng để khôi phục thủ công nếu cần.</p>
+<label>Nhập đúng job ID để xác nhận <input id="confirm" inputmode="numeric"></label>
+<label><input id="ack" type="checkbox"> Tôi đã kiểm tra server, job đích, file và chấp nhận thay đổi annotation trên server.</label>
+<button id="import">Tạo dự phòng rồi Import</button>
+<button id="reload" hidden>Nạp lại tab CVAT sau import</button>
+<p>Trong khi xử lý, giữ tab CVAT ở job hiện tại. Không sửa annotation đến khi nạp lại tab. Nếu trang này đóng, kiểm tra Requests trong CVAT trước khi chạy lại.</p>
+</section>
+</main><script src="session.js"></script></html>

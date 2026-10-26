@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-06",
+  "version": "1.2.0",
+  "browser": "installed Microsoft Edge, headless, isolated fresh test contexts",
+  "target": "own localhost demo and standalone file only",
+  "command": "node node_modules/@playwright/test/cli.js test",
+  "passed": 3,
+  "failed": 0,
+  "durationSeconds": 12.1,
+  "checks": [
+    "Ground Snap changes Z; yaw changes while UI remains connected",
+    "Selection and class edits reflected in demo model; Undo restores class",
+    "Free camera W movement changes actual camera position; Esc exits",
+    "Issue click selects corresponding demo cuboid",
+    "QC colors update after snap, return after Undo, clear to class colors",
+    "Standalone HTML opens with 61 boxes and no HTTP requests"
+  ],
+  "limitations": ["No authenticated CVAT extension end-to-end testing", "Synthetic point cloud", "No performance SLA"],
+  "screenshot": "demo-1.2.png"
+}

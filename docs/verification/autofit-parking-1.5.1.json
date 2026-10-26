@@ -1,0 +1,53 @@
+{
+  "version": "1.5.1",
+  "jobId": 9426,
+  "frame": 29,
+  "clientId": 32,
+  "source": "Real exported ROI, no manual reference available",
+  "beforeCluster": 7283,
+  "afterCluster": 4304,
+  "selectedRadius": 0.3,
+  "attempts": [
+    {
+      "radius": 0.55,
+      "pointCount": 7283,
+      "status": "rejected",
+      "reason": "Cụm điểm vượt kích thước class; có thể lẫn vật thể khác. Giữ nguyên box để kiểm tra."
+    },
+    {
+      "radius": 0.4,
+      "pointCount": 4479,
+      "status": "valid"
+    },
+    {
+      "radius": 0.3,
+      "pointCount": 4304,
+      "status": "valid"
+    },
+    {
+      "radius": 0.25,
+      "pointCount": 4295,
+      "status": "valid"
+    }
+  ],
+  "fitted": [
+    3.1148616717721898,
+    -10.48865904083977,
+    0.853554043327614,
+    0,
+    0,
+    1.3342818120636286,
+    4.597505362811157,
+    1.7816801191072578,
+    1.8128919324182582,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "liveVerified": false,
+  "neighborBoxesIncludedInSource": false
+}

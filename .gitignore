@@ -1,0 +1,80 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build & Bundle outputs
+dist/
+build/
+*.zip
+
+# Testing & Verification outputs
+test-results/
+playwright-report/
+coverage/
+
+# Point Cloud & Data Cache
+data/
+data_*/
+*.pcd
+*.bin
+*.las
+*.laz
+
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Environment secrets and tokens
+.env
+.env.local
+*.local.json
+credentials.json
+*.key
+
+# Default outputs of the bundled annotation CLI.
+/cvat-backups/
+/job*-native.json
+
+# Editor and OS junk
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+.reference/
+
+# Additional local-only files
+node_modules/
+.reference/
+test-results/
+playwright-report/
+dist/
+*.log
+*.local.json
+
+# Local CVAT jobs and raw point clouds (keep on this workstation).
+data_job*/
+/*job58*.json
+/server_current_after_user_edit.json
+
+# One-off audit/upload scripts can contain workstation session credentials.
+/scripts/*.py
+!/scripts/plot-fit-case.py
+!/scripts/cvat_session_test.py
+!/scripts/cvat_io.py
+!/scripts/build_extension.py
+!/scripts/clean_keyframes_pipeline.py
+!/scripts/tracker_3d_pipeline.py
+!/scripts/cvat_client.py
+!/scripts/build-windows-installer.py
+
+# Environment files and local credentials must never be published.
+.env
+.env.*
+!.env.example
+*.pem
+*.key

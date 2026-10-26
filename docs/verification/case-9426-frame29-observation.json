@@ -1,0 +1,15 @@
+{
+  "source": "user-provided HUD screenshot; rounded displayed values, not raw annotation data",
+  "jobId": 9426,
+  "frame": 29,
+  "clientIdAtCapture": 29,
+  "classLabel": "vehicles",
+  "displayedCenterMetres": [15.27, -6.29, 0.92],
+  "displayedSizeMetres": [4.66, 1.76, 2.03],
+  "displayedYawDegrees": 0.4,
+  "displayedBottomMetres": -0.09,
+  "groundMessage": "Không tách được mặt đất ổn định",
+  "saveStateAtCapture": "unsaved",
+  "missing": ["raw ROI point cloud", "seed box", "automatic result", "user-confirmed reference box"],
+  "currentBoxRole": "not established from HUD screenshot"
+}

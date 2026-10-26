@@ -1,0 +1,6 @@
+:root{color-scheme:dark;font-family:system-ui;background:#111114;color:#eee}
+main{max-width:850px;margin:30px auto;padding:0 20px}section{background:#1b1b20;border:1px solid #38383e;border-radius:8px;padding:20px;margin:18px 0}
+h1{font-size:24px}h2{font-size:18px}p{color:#c0c0c8;line-height:1.6}label{display:block;margin:14px 0}
+input:not([type=checkbox]),select{display:block;box-sizing:border-box;width:100%;margin-top:6px;padding:9px;background:#24242b;color:#eee;border:1px solid #484850;border-radius:4px}
+button{padding:9px 13px;margin:5px 5px 5px 0;background:#30303b;color:white;border:1px solid #52525c;border-radius:4px;cursor:pointer}
+button:disabled{opacity:.45;cursor:wait}#status{white-space:pre-wrap;color:#6ee7b7}#status.error{color:#fca5a5}

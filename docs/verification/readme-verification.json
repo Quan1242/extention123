@@ -1,0 +1,221 @@
+{
+  "verifiedAt": "2026-10-06T09:25:11.860Z",
+  "timeZone": "Asia/Bangkok",
+  "runtime": "v24.19.0",
+  "scope": "offline fixture, synthetic geometry and mocked DOM; optional read-only live HTTP GET",
+  "hashes": {
+    "README.md": "7c63eb4d9c8dbfaaac4f534f4fa238e3b267cce0b9b5a1b9130ef004c816e534",
+    "extension/content_script.js": "2e0a8a3cd15cdb60cc23285df23566592ce28af4192d344cc161a68c37af865c",
+    "extension/geometry_math.js": "f4b0a98d322cd93d6db54bdad4e3a58f666fd945ed202f3086b3040c104a64dc",
+    "extension/main_world_bridge.js": "054624723cfbf95f167b8a93b976f0e91bf2b6363cbcebcb4ece7f885b8591c2",
+    "extension/job_9426_fallback.js": "65263c667ea100d872c4cbf183f565546dfac8015c953a65fa4ed45b783df750",
+    "test_demo.html": "5f0ef2b7c442c801888255132d0bc8bed7667973efc3429e0f0c54d5c32cc43a"
+  },
+  "cachedFixture": {
+    "count": 61,
+    "classes": {
+      "pedestrian": 17,
+      "vehicles": 24,
+      "two-wheels": 20
+    },
+    "frames": {
+      "29": 61
+    },
+    "types": {
+      "cuboid": 61
+    },
+    "plane": {
+      "a": -0.004315731466623439,
+      "b": -0.009726542215448128,
+      "c": -0.015412174255888955
+    },
+    "issues": {
+      "count": 35,
+      "affectedBoxes": 33,
+      "severity": {
+        "CRITICAL": 31,
+        "WARNING": 4
+      },
+      "codes": {
+        "FLOATING_GROUND": 11,
+        "UNDERSIZED_LENGTH": 3,
+        "SUBMERGED_GROUND": 15,
+        "UNDERSIZED_WIDTH": 1,
+        "DUPLICATE_COLLISION": 4,
+        "OVERSIZED_LENGTH": 1
+      }
+    }
+  },
+  "checks": [
+    {
+      "id": "rotation_-90",
+      "expected": "yaw only; input unchanged",
+      "actual": -1.5707963267948966,
+      "pass": true
+    },
+    {
+      "id": "rotation_90",
+      "expected": "yaw only; input unchanged",
+      "actual": 1.5707963267948966,
+      "pass": true
+    },
+    {
+      "id": "rotation_180",
+      "expected": "yaw only; input unchanged",
+      "actual": 3.141592653589793,
+      "pass": true
+    },
+    {
+      "id": "upright_snap",
+      "expected": 0.3,
+      "actual": 0.30000000000000004,
+      "pass": true
+    },
+    {
+      "id": "known_plane",
+      "expected": {
+        "a": 0.1,
+        "b": 0.2,
+        "c": 3
+      },
+      "actual": {
+        "a": 0.10000000000000778,
+        "b": 0.19999999999998963,
+        "c": 3.000000000000019
+      },
+      "pass": true
+    },
+    {
+      "id": "disjoint_boxes_not_overlap",
+      "expected": false,
+      "actual": true,
+      "pass": false
+    },
+    {
+      "id": "overlapping_boxes_detected",
+      "expected": true,
+      "actual": false,
+      "pass": false
+    },
+    {
+      "id": "oversized_width_and_height",
+      "expected": [
+        "OVERSIZED_WIDTH",
+        "OVERSIZED_HEIGHT"
+      ],
+      "actual": [
+        "AXIS_SWAPPED"
+      ],
+      "pass": false
+    },
+    {
+      "id": "nonfinite_coordinate_rejected",
+      "expected": "INVALID_POINTS",
+      "actual": [],
+      "pass": false
+    },
+    {
+      "id": "tilted_box_snap_bottom",
+      "expected": 0,
+      "actual": -0.4142135623730949,
+      "pass": false
+    },
+    {
+      "id": "selection_requests_cvat_activation",
+      "expected": true,
+      "actual": [],
+      "pass": false
+    },
+    {
+      "id": "scan_fetches_annotations_as_readme_claims",
+      "expected": true,
+      "actual": 0,
+      "pass": false
+    },
+    {
+      "id": "network_failure_not_success",
+      "expected": false,
+      "actual": true,
+      "pass": false
+    },
+    {
+      "id": "realtime_toast_requires_bridge_ack",
+      "expected": false,
+      "actual": "[REAL-TIME OK] Box #601 rotated +90°",
+      "pass": false
+    }
+  ],
+  "live": {
+    "attempted": true,
+    "writesAttempted": false,
+    "origin": "https://cvat.note.transformerlabs.ai",
+    "checkedAt": "2026-10-06T09:25:12.355Z",
+    "endpoints": [
+      {
+        "route": "/api/server/about",
+        "status": 200
+      },
+      {
+        "route": "/api/jobs/9426",
+        "status": 200
+      },
+      {
+        "route": "/api/labels?job_id=9426",
+        "status": 200
+      },
+      {
+        "route": "/api/jobs/9426/annotations",
+        "status": 200
+      }
+    ],
+    "server": {
+      "version": "2.76.0"
+    },
+    "job": {
+      "id": 9426,
+      "task_id": 2837,
+      "start_frame": 29,
+      "stop_frame": 29,
+      "dimension": "3d"
+    },
+    "annotations": {
+      "count": 62,
+      "classes": {
+        "pedestrian": 17,
+        "vehicles": 24,
+        "two-wheels": 20,
+        "Animal": 1
+      },
+      "frames": {
+        "29": 62
+      },
+      "types": {
+        "cuboid": 62
+      },
+      "plane": {
+        "a": -0.002644508592786362,
+        "b": -0.008099989076245302,
+        "c": -0.031602500089748915
+      },
+      "issues": {
+        "count": 11,
+        "affectedBoxes": 10,
+        "severity": {
+          "WARNING": 4,
+          "CRITICAL": 7
+        },
+        "codes": {
+          "UNDERSIZED_LENGTH": 3,
+          "DUPLICATE_COLLISION": 4,
+          "FLOATING_GROUND": 1,
+          "UNDERSIZED_WIDTH": 1,
+          "SUBMERGED_GROUND": 1,
+          "OVERSIZED_LENGTH": 1
+        }
+      },
+      "tracksCount": 0,
+      "labelsPaginationNext": false,
+      "sameIdsAndPointsAsFixture": false
+    }
+  }
+}

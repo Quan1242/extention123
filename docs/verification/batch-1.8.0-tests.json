@@ -1,0 +1,37 @@
+{
+  "version": "1.8.0",
+  "date": "2026-10-15",
+  "unit": {
+    "total": 64,
+    "passed": 64,
+    "failed": 0
+  },
+  "browser": {
+    "distinctTestsPassed": 17,
+    "failed": 0,
+    "runs": [
+      {
+        "scope": "Full suite before final dialog keyboard guard",
+        "passed": 16,
+        "seconds": 32.5
+      },
+      {
+        "scope": "All batch UI tests after final dialog keyboard guard, including the new keyboard test",
+        "passed": 5,
+        "seconds": 7.9
+      },
+      {
+        "scope": "Full suite before GitHub publication, final dialog keyboard guard included",
+        "passed": 17,
+        "seconds": 32.4
+      }
+    ]
+  },
+  "nativeServerWrites": false,
+  "liveBatchVerified": false,
+  "limitations": [
+    "PCD fixtures are synthetic; job601 point-cloud sequence not used in automated tests",
+    "No ego-motion compensation or AI tracker",
+    "Separate native Undo per applied frame; partial failures may leave earlier frames applied"
+  ]
+}

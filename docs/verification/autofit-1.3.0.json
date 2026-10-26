@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-07",
+  "version": "1.3.0",
+  "unitTests": { "passed": 25, "failed": 0, "original19Passed": true },
+  "browserTests": { "passed": 7, "failed": 0, "scope": "offline demo and mocked editor panel in fresh Edge contexts" },
+  "autoFitChecks": [
+    "Synthetic two-wheels PCA yaw and XYZ extents, road point removal",
+    "Min length 1.4m and min width 0.6m; maximum dimensions clamped",
+    "Yaw hemisphere preserved; input coordinates unchanged",
+    "Sloped ground contact with no penetrating vertices",
+    "Sparse post-ground cluster, invalid ground, unknown class and XY degeneracy refused",
+    "Rotated local ROI expanded by 0.4m",
+    "Original THREE.Points buffer ROI and world transform tested via native adapter mock",
+    "Native ObjectState.save/history dispatch tested",
+    "Demo button and Alt+Shift+A update geometry, Undo and Redo restore exact coordinates"
+  ],
+  "liveCVATVerified": false,
+  "limitations": [
+    "PCA does not distinguish vehicle front/back",
+    "ROI should contain one object; no semantic segmentation or outlier rejection",
+    "Ground estimator uses capped/sampled point indexing; fit ROI scans original buffers",
+    "Clamping maximum dimensions can exclude cluster points; annotator must review"
+  ]
+}

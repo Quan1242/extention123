@@ -1,0 +1,93 @@
+const {test,expect}=require('@playwright/test');
+const path=require('node:path');
+const {pathToFileURL}=require('node:url');
+test('3D demo: ground, yaw, selection, class, undo and actual camera movement',async({page})=>{
+    const errors=[];page.on('pageerror',e=>errors.push(e.message));
+    await page.goto('http://127.0.0.1:4173/demo/index.html');
+    await expect(page.locator('#c3d-val-count')).toHaveText('61');
+    await page.locator('[data-case="2"]').click();
+    await expect(page.locator('#c3d-btn-ground')).toBeEnabled();
+    const before=await page.evaluate(()=>__C3D_DEMO_TEST.snapshot().boxes.find(b=>b.id===2).points);
+    await page.locator('#c3d-btn-ground').click();
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.snapshot().boxes.find(b=>b.id===2).points[2])).toBeLessThan(before[2]-.5);
+    await expect(page.locator('#c3d-btn-rot-right')).toBeEnabled();
+    await page.locator('#c3d-btn-rot-right').click();
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.snapshot().boxes.find(b=>b.id===2).points[5])).toBeCloseTo(Math.atan2(Math.sin(before[5]+Math.PI/2),Math.cos(before[5]+Math.PI/2)),8);
+    await page.locator('#c3d-select-box').selectOption('3');
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.snapshot().activeBoxId)).toBe(3);
+    const label=await page.locator('#c3d-select-class option').filter({hasText:'pedestrian'}).getAttribute('value');
+    await page.locator('#c3d-select-class').selectOption(label);
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.snapshot().boxes.find(b=>b.id===3).label_name)).toBe('pedestrian');
+    await page.locator('#demo-undo').click();
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.snapshot().boxes.find(b=>b.id===3).label_name)).not.toBe('pedestrian');
+    await page.locator('#c3d-btn-freecam').click();
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.snapshot().freeCam)).toBe(true);
+    const pos=await page.evaluate(()=>__C3D_DEMO_TEST.camera().position);
+    await page.locator('.demo-stage canvas').click();
+    await page.keyboard.down('w');await page.waitForTimeout(350);await page.keyboard.up('w');
+    const after=await page.evaluate(()=>__C3D_DEMO_TEST.camera().position);
+    expect(Math.hypot(...after.map((n,i)=>n-pos[i]))).toBeGreaterThan(.1);
+    await page.keyboard.press('Escape');
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.snapshot().freeCam)).toBe(false);
+    await page.locator('[data-case="3"]').click();
+    await page.screenshot({path:'docs/verification/demo-1.2.png',fullPage:true});
+    expect(errors).toEqual([]);
+});
+test('standalone file opens with no HTTP dependency',async({page})=>{
+    const requests=[];page.on('request',r=>{if(/^https?:/.test(r.url()))requests.push(r.url());});
+    await page.goto(pathToFileURL(path.resolve('dist/CVAT-3D-Copilot-Demo.html')).href);
+    await expect(page.locator('#c3d-val-count')).toHaveText('61');
+    await expect(page.locator('#c3d-btn-ground')).toBeEnabled();
+    expect(requests).toEqual([]);
+});
+
+test('issue selection and QC colors follow edits without page refresh',async({page})=>{
+    await page.goto('http://127.0.0.1:4173/demo/index.html');
+    await page.locator('#c3d-select-box').selectOption('3');
+    const beforeCamera=await page.evaluate(()=>__C3D_DEMO_TEST.camera().position);
+    const issue=page.locator('.c3d-issue-select').filter({hasText:'Box #3'}).first();
+    await expect(issue).toBeVisible();await issue.click();
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.snapshot().activeBoxId)).toBe(3);
+    expect(await page.evaluate(()=>__C3D_DEMO_TEST.camera().position)).not.toEqual(beforeCamera);
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.color(3))).toBe('f87171');
+    await page.locator('#c3d-btn-ground').click();
+    await expect(page.locator('.c3d-issue-select').filter({hasText:/Đáy chìm|penetrates ground/i})).toHaveCount(0);
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.color(3))).not.toBe('f87171');
+    await page.locator('#demo-undo').click();
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.color(3))).toBe('f87171');
+    await page.locator('#c3d-colors').uncheck();
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.color(3))).toBe('60a5fa');
+});
+
+test('native selection scopes issues to selected box and clear selection restores frame list',async({page})=>{
+    await page.goto('http://127.0.0.1:4173/demo/index.html');
+    await page.locator('[data-case="4"]').click();
+    await expect(page.locator('.c3d-issue-target')).toHaveText(['Box #4']);
+    await page.locator('[data-case="3"]').click();
+    await expect(page.locator('.c3d-issue-target')).toHaveText(['Box #3']);
+    await page.locator('#c3d-btn-ground').click();
+    await expect(page.locator('.c3d-issue-select')).toHaveCount(0);
+    await expect(page.locator('.c3d-empty-state')).toContainText('Box #3');
+    await page.evaluate(()=>{const s=__C3D_DEMO_TEST.snapshot();s.activeBoxId=null;window.dispatchEvent(new CustomEvent('c3d:snapshot:v2',{detail:JSON.stringify(s)}));});
+    await expect(page.locator('.c3d-issue-target').filter({hasText:/^Box #4$/})).toHaveCount(1);
+    await expect(page.locator('.c3d-title')).toHaveText('CVAT 3D TOOL');
+    expect(await page.locator('#c3d-content-body').evaluate(el=>getComputedStyle(el).scrollbarColor)).toBe('rgb(69, 69, 77) rgb(24, 24, 27)');
+});
+
+test('Auto-Fit button and shortcut edit demo geometry with undo and redo',async({page})=>{
+    await page.goto('http://127.0.0.1:4173/demo/index.html');
+    await page.locator('[data-case="2"]').click();
+    await expect(page.locator('#c3d-road-info')).toContainText('Ground base: surrounding road');
+    const before=await page.evaluate(()=>__C3D_DEMO_TEST.snapshot().boxes.find(b=>b.id===2).points);
+    await page.locator('#c3d-btn-autofit').click();
+    await expect(page.locator('#c3d-toast')).toContainText(/Auto-Fit updated|Auto-Fit đã cập nhật/i);
+    const fitted=await page.evaluate(()=>__C3D_DEMO_TEST.snapshot().boxes.find(b=>b.id===2).points);
+    expect(fitted).not.toEqual(before);
+    await page.locator('#demo-undo').click();
+    expect(await page.evaluate(()=>__C3D_DEMO_TEST.snapshot().boxes.find(b=>b.id===2).points)).toEqual(before);
+    await page.locator('#demo-redo').click();
+    expect(await page.evaluate(()=>__C3D_DEMO_TEST.snapshot().boxes.find(b=>b.id===2).points)).toEqual(fitted);
+    await page.locator('#demo-undo').click();await page.locator('#demo-canvas').click();
+    await page.locator('[data-case="2"]').click();await page.keyboard.press('Alt+Shift+a');
+    await expect.poll(()=>page.evaluate(()=>__C3D_DEMO_TEST.snapshot().boxes.find(b=>b.id===2).points[2])).not.toBe(before[2]);
+});

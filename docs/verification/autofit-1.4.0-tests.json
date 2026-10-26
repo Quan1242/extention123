@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-07",
+  "version": "1.4.0",
+  "unitTests": {"passed":36,"failed":0,"original19Preserved":true},
+  "browserTests": {"passed":7,"failed":0,"scope":"local demo in Edge headless"},
+  "realCase": "autofit-real-case-1.4.0.json",
+  "realCaseChecks": [
+    "Ground confidence at least 65%, RMSE below 4cm",
+    "Yaw error below 2 degrees, 3D IoU above 0.75 against user reference",
+    "Height error below 0.15m and center error below 0.25m",
+    "Replacing manual reference does not affect generated coordinates",
+    "Rotated and translated case retains heading accuracy and IoU above 0.72",
+    "Native adapter mock updates via ObjectState.save and one history entry",
+    "Class-based vertical search includes road and roof for a 1m initial box"
+  ],
+  "limitations": "Export includes ROI plus sampled ground support, not the full original raw frame. Live installed CVAT not tested in this run."
+}
